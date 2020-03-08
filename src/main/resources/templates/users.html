@@ -1,0 +1,55 @@
+<html xmlns:th="http://www.thymeleaf.org" xmlns:form="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>LocaleDB</title>
+</head>
+<body>
+
+<!--<form method="post">-->
+<!--    <a href="?lang=ru">RU</a>-->
+<!--    <a href="?lang=en">ENG</a>-->
+
+
+<!--</form>-->
+<!--<p th:text="${lang}"></p>-->
+<span th:text="#{lang.change}"></span>:
+<select id="locales">
+    <option value=""></option>
+    <option value="en" th:text="#{lang.eng}"></option>
+    <option value="ua" th:text="#{lang.ua}"></option>
+</select>
+
+<table>
+    <tr>
+        <th th:text="#{name}"></th>
+        <th th:text="#{name.ukr}"></th>
+        <th th:text="#{login}"></th>
+        <th th:text="#{password}"></th>
+
+
+    </tr>
+
+    <tr th:each="user : ${users}">
+        <td th:text="${user.id}">Id</td>
+        <td th:text="${user.name}">Name</td>
+        <td th:text="${user.login}">Login</td>
+        <td th:text="${user.password}">Password</td>
+
+    </tr>
+</table>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js">
+</script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("#locales").change(function () {
+            var selectedOption = $('#locales').val();
+            if (selectedOption != ''){
+                window.location.replace('users?lang=' + selectedOption);
+            }
+        });
+    });
+</script>
+</body>
+</html>
